@@ -1,36 +1,50 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI; // Para Image
+using UnityEngine.UI;
+using System.Collections;
 using TMPro;
 
+[RequireComponent(typeof(AudioSource))]
 public class PlayerController : MonoBehaviour
 {
+    public TextMeshProUGUI coinText;
+    public int coinValue = 0;
+
+    public GameObject Key;
     public GameObject walkingcamera;
     public Animator animator;
     public TextMeshProUGUI AmmoText;
 
     private Rigidbody _rb;
 
-    // Vida total y actual (60 max, 6 corazones)
     public int maxHealth = 60;
     public int currentHealth = 60;
 
-    // Array con las imágenes de los corazones en UI (6)
     public Image[] vidaHUD;
-
-    // Sprites para corazón lleno, medio y vacío
     public Sprite heartFull;
     public Sprite heartHalf;
     public Sprite heartEmpty;
 
     private bool invulnerable = false;
 
+    [Header("Audio Clips")]
+    public AudioClip hitSound;
+    public AudioClip deathSound;
+    public AudioClip coinSound;
+    public AudioClip healSound;
+
+    private AudioSource audioSource;
+
     void Start()
     {
+        Key.SetActive(false);
+
+        coinText.text = "x " + coinValue.ToString();
+
         walkingcamera.SetActive(true);
         animator = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
 
         UpdateHealthUI();
     }
@@ -49,22 +63,32 @@ public class PlayerController : MonoBehaviour
             yield break;
 
         invulnerable = true;
+        animator.SetBool("Hit", true);
 
         currentHealth -= damage;
         if (currentHealth < 0) currentHealth = 0;
+
+        // Hit
+        if (hitSound != null)
+            audioSource.PlayOneShot(hitSound);
 
         UpdateHealthUI();
 
         if (currentHealth == 0)
         {
+            // Muerte
+            if (deathSound != null)
+                audioSource.PlayOneShot(deathSound);
+
             animator.SetBool("Death", true);
             yield return new WaitForSeconds(2);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         else
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
             invulnerable = false;
+            animator.SetBool("Hit", false);
         }
     }
 
@@ -72,10 +96,14 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            // Por ejemplo, daño aleatorio 5, 10 o 15
-            int damage = 5; // Cambia según el enemigo
+            int damage = 5;
             StartCoroutine(RecibirDaño(damage));
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        StartCoroutine(RecibirDaño(damage));
     }
 
     void OnTriggerEnter(Collider other)
@@ -84,35 +112,53 @@ public class PlayerController : MonoBehaviour
         {
             if (currentHealth < maxHealth)
             {
-                currentHealth += 10; // Cura 10 puntos = 1 corazón completo
+                currentHealth += 10;
                 if (currentHealth > maxHealth) currentHealth = maxHealth;
                 UpdateHealthUI();
                 Destroy(other.gameObject);
+
+                // Heal
+                if (healSound != null)
+                    audioSource.PlayOneShot(healSound);
             }
+        }
+
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            coinValue += 5;
+            coinText.text = "x " + coinValue.ToString();
+            Destroy(other.gameObject);
+
+            // Moneda
+            if (coinSound != null)
+                audioSource.PlayOneShot(coinSound);
+        }
+
+        if (other.gameObject.CompareTag("Key"))
+        {
+            Key.SetActive(true);
+            Destroy(other.gameObject);
+
+            // Llave
+            if (coinSound != null)
+                audioSource.PlayOneShot(coinSound);
         }
     }
 
-    // Actualiza los sprites de los corazones según la vida actual
     private void UpdateHealthUI()
     {
-        int pointsPerHeart = maxHealth / vidaHUD.Length; // 10
+        int pointsPerHeart = maxHealth / vidaHUD.Length;
 
         for (int i = 0; i < vidaHUD.Length; i++)
         {
             int heartValue = currentHealth - i * pointsPerHeart;
 
             if (heartValue >= pointsPerHeart)
-            {
                 vidaHUD[i].sprite = heartFull;
-            }
             else if (heartValue >= pointsPerHeart / 2)
-            {
                 vidaHUD[i].sprite = heartHalf;
-            }
             else
-            {
                 vidaHUD[i].sprite = heartEmpty;
-            }
         }
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private int damage = 1; // Daño predeterminado de la bala
+    private int damage = 1;
 
     void Start()
     {
@@ -17,15 +17,28 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy")) // Si golpea a un enemigo
+        if (other.CompareTag("Enemy"))
         {
-            NPCMovement enemy = other.GetComponent<NPCMovement>();
+            NPCEstados enemy = other.GetComponent<NPCEstados>();
             if (enemy != null)
             {
-                enemy.TakeDamage(damage); // Aplica daño al enemigo
+                enemy.TakeDamage(damage);
             }
-            Destroy(gameObject); // Destruye la bala después del impacto
+            Destroy(gameObject);
         }
-
+        if (other.CompareTag("Boss"))
+        {
+            BossNPC boss = other.GetComponent<BossNPC>();
+            if (boss != null)
+            {
+                boss.TakeDamage(damage);
+            }
+            Destroy(gameObject);
+        }
+        
+        else if (!other.CompareTag("Player") && !other.CompareTag("Boss"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

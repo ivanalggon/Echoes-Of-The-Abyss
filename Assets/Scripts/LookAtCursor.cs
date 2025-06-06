@@ -44,7 +44,15 @@ public class LookAtCursor : MonoBehaviour
             {
                 newCursorState = CursorState.Enemy;
             }
+            else if (hit.collider.CompareTag("Boss"))
+            {
+                newCursorState = CursorState.Enemy;
+            }
             else if (hit.collider.CompareTag("Item"))
+            {
+                newCursorState = CursorState.Item;
+            }
+            else if (hit.collider.CompareTag("Ally"))
             {
                 newCursorState = CursorState.Item;
             }

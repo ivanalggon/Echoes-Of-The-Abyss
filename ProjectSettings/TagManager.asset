@@ -10,6 +10,13 @@ TagManager:
   - Bullet
   - Coin_particle
   - Item
+  - Coin
+  - Ally
+  - Walls
+  - Key
+  - Boss
+  - EnemyBullet
+  - Door
   layers:
   - Default
   - TransparentFX
