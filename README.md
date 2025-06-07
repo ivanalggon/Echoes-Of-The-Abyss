@@ -20,12 +20,12 @@
 ## 📸 Screenshots
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/83728bd2-21f5-4847-ab49-1bb31851883b" width="500"/>
-  <img src="https://github.com/user-attachments/assets/d5dab1ea-6675-4eaf-95d4-5af7b464e31f" width="500"/>
+  <img src="https://github.com/user-attachments/assets/83728bd2-21f5-4847-ab49-1bb31851883b" width="400"/>
+  <img src="https://github.com/user-attachments/assets/d5dab1ea-6675-4eaf-95d4-5af7b464e31f" width="400"/>
 </div>
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/7a3999d2-97bd-443a-ac6a-99a6516a704a" width="750"/>
+  <img src="https://github.com/user-attachments/assets/7a3999d2-97bd-443a-ac6a-99a6516a704a" width="500"/>
 </div>
 
 ## 🕹️ How to Play
