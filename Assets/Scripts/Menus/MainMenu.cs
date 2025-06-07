@@ -10,6 +10,11 @@ public class MainMenu : MonoBehaviour
         // Aquí puedes cargar la escena del juego
         SceneManager.LoadScene("Game");
     }
+    public void OnclickExitGame()
+    {
+        // Aquí puedes salir del juego
+        Application.Quit();
+    }
     public void OnclickMainMenu()
     {
         // Aquí puedes cargar la escena del juego
