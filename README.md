@@ -74,7 +74,7 @@ Or download the ZIP file manually from:
 Due to file size limits, the `Zombie.fbx` model is not included in the GitHub repository. You must download it manually.
 
 1. Download the file from OneDrive:  
-   📎 [Download Zombie.fbx]([https://1drv.ms/u/s!XXXXX](https://monlaues-my.sharepoint.com/:f:/g/personal/ivanalggon_campus_monlau_com/EtuSBOlMFKxIrhUivGG9ShkB1zvZTtnoEKJXY5IkZsddCw?e=rhN8sQ))
+   📎 [Download Zombie Fbx](https://monlaues-my.sharepoint.com/:f:/g/personal/ivanalggon_campus_monlau_com/EtuSBOlMFKxIrhUivGG9ShkB1zvZTtnoEKJXY5IkZsddCw?e=rhN8sQ)
 
 2. Move the file to the following path inside the Unity project:
 
