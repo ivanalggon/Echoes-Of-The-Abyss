@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8269a9f8cf495034c817722ac21f309f
+guid: fd27191aa42092042b8a510fcf04c343
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable:
@@ -22,7 +22,12 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'Walk_N' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Left_LowerArm' has translation animation
+      that will be discarded.\n\t'Left_Hand' has translation animation that will
+      be discarded.\n\t'Right_LowerArm' has translation animation that will be discarded.\n\t'Right_Hand'
+      has translation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0

@@ -80,7 +80,6 @@ public class PlayerController : MonoBehaviour
             if (deathSound != null)
                 audioSource.PlayOneShot(deathSound);
 
-            //animator.SetBool("Death", true);
             animator.SetTrigger("Dead");
             yield return new WaitForSeconds(2);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
