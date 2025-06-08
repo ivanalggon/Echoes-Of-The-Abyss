@@ -218,8 +218,8 @@ public class BossNPC : MonoBehaviour
         if (risaReproducida)
         {
             // Disparo doble con separación mínima
-            DispararBala(offsetLateral: -0.2f);
-            DispararBala(offsetLateral: 0.2f);
+            DispararBala(offsetLateral: -0.5f);
+            DispararBala(offsetLateral: 0.5f);
         }
         else
         {
