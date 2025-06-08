@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38f274af29b8b464abd4a478a875d7c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidadRotacion: {x: 0, y: 100, z: 0}
+  velocidadRotacion: {x: 0, y: 0, z: 0}
 --- !u!1 &5058269361865057797
 GameObject:
   m_ObjectHideFlags: 0
